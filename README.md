@@ -20,6 +20,8 @@ They start earlier, when the request skips questions like:
 
 ReqCheck makes the AI slow down before implementation and turn those hidden decisions into plain questions.
 
+For high-risk product work, ReqCheck also checks whether the UI has evidence for what it claims. A page should not say "connected", "saved", "synced", "paid", "authorized", "deleted", or "complete" unless there is a real source of truth behind that state. If an API, platform, or backend cannot prove the result, ReqCheck should push the design toward "pending", "unverified", "will try", or another honest fallback.
+
 ## Quick Demo
 
 User:
@@ -63,6 +65,7 @@ ReqCheck uses a pattern library extracted from real AI-assisted product developm
 | Failure retry and loading state | Infinite loading, repeated retries, flicker, or duplicate submit |
 | Permission denial and partial usability | One rejected permission blocking the whole product |
 | Release path and version | Users, reviewers, frontend, and backend seeing different versions |
+| Unverifiable success state | UI claiming success when the system cannot prove the permission, payment, sync, or job actually succeeded |
 | UI promise vs real behavior | The UI or policy promising something the backend does not actually do |
 
 ## Install
@@ -108,6 +111,7 @@ ReqCheck should output:
 - smallest useful version
 - fuller version
 - risks
+- source-of-truth audit for high-risk states
 - what not to do yet
 - what could break if skipped
 - at most 3 important questions
@@ -140,6 +144,8 @@ A good ReqCheck response should:
 - include a not-doing section when scope is cut
 - explain what could break if something is skipped
 - catch at least one hidden state, data, context, failure, permission, or release problem
+- reject or downgrade success states that do not have a verifiable source of truth
+- include negative acceptance checks for high-risk requests
 - produce a brief a coding agent can implement after the user confirms direction
 
 See [eval prompts](evals/prompts.json).

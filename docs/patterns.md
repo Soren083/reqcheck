@@ -122,3 +122,14 @@ Examples:
 - Delete account should delete or anonymize the right data.
 - Privacy copy should match actual permission requests.
 - Refund text should match support and payment behavior.
+
+## 13. Unverifiable Success State
+
+Question: what proves this success state is true?
+
+Examples:
+
+- A HealthKit read permission flow can return without proving whether the user allowed read access, so the UI should not say "connected" unless another reliable check exists.
+- A payment redirect can return before a webhook confirms the subscription, so the UI should show pending or verifying instead of instantly unlocking paid features.
+- An upload job can be queued but not processed, so the UI should say uploaded or processing only according to the backend state it can verify.
+- A local flag can prove user intent, but it cannot prove that a permission, sync, deletion, or payment actually succeeded.

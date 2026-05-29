@@ -20,6 +20,11 @@
       "id": "paywall",
       "prompt": "Use reqcheck. Add a subscription paywall for Pro features.",
       "expected_output": "Clarifies free limit timing, payment success/failure states, restore purchase, expired subscription, and not-doing risks."
+    },
+    {
+      "id": "health-permission",
+      "prompt": "用 reqcheck 深度模式，先不要写代码。我有一个苹果健康授权页，用户点击授权后会弹出系统 HealthKit 权限页。点不允许后页面现在还是显示连接成功，你帮我澄清这个需求。",
+      "expected_output": "Identifies this as a high-risk permission/app-review/health-data flow, audits the source of truth for connected/setup-complete states, notes that read permission may not be verifiable, requires unverified/pending UI instead of success copy, and includes negative acceptance tests for deny, no data, settings changes, and review-device behavior."
     }
   ]
 }
